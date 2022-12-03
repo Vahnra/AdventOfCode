@@ -34,3 +34,17 @@ foreach ($food_calories as $i => $elf) {
 
 // Print the result
 echo "Elf $max_elf is carrying the most Calories, with a total of $max_calories Calories\n";
+
+// Sort the Elves by the total number of Calories they are carrying
+usort($food_calories, function($a, $b) {
+  return array_sum($b) - array_sum($a);
+});
+
+// Take the first three Elves in the sorted list
+$top_calories = array_slice($food_calories, 0, 3);
+
+// Calculate the total number of Calories carried by the top three Elves
+$total_calories = array_sum(array_map("array_sum", $top_calories));
+
+// Print the result
+echo "The top three Elves are carrying a total of $total_calories Calories\n";
